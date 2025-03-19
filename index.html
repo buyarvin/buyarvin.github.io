@@ -75,14 +75,19 @@
     </div>
 
     <script>
-        let currentBid = 0;
+        // Load the highest bid from localStorage when the page loads
+        let currentBid = parseFloat(localStorage.getItem('highestBid')) || 0;
+        document.getElementById('currentBid').textContent = currentBid.toFixed(2);
 
         function placeBid() {
             const bidAmount = parseFloat(document.getElementById('bidAmount').value);
 
             if (bidAmount > currentBid) {
                 currentBid = bidAmount;
+                // Update the displayed bid
                 document.getElementById('currentBid').textContent = currentBid.toFixed(2);
+                // Save the new highest bid to localStorage
+                localStorage.setItem('highestBid', currentBid);
                 alert('Bid placed successfully!');
             } else {
                 alert('Your bid must be higher than the current highest bid.');
