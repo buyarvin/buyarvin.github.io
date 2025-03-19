@@ -1,1 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bid for Arvin's Painting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .painting {
+            width: 200px;
+            height: 200px;
+            background-color: #ddd;
+            margin: 0 auto 20px;
+            border-radius: 8px;
+        }
+        .bid-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .bid-form input {
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 100%;
+            max-width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .bid-form button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .bid-form button:hover {
+            background-color: #218838;
+        }
+        .current-bid {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bid for Arvin's Painting</h1>
+        <div class="painting"></div>
+        <div class="bid-form">
+            <input type="number" id="bidAmount" placeholder="Enter your bid amount" min="0">
+            <button onclick="placeBid()">Place Bid</button>
+        </div>
+        <div class="current-bid">
+            <strong>Current Highest Bid:</strong> $<span id="currentBid">0</span>
+        </div>
+    </div>
 
+    <script>
+        let currentBid = 0;
+
+        function placeBid() {
+            const bidAmount = parseFloat(document.getElementById('bidAmount').value);
+
+            if (bidAmount > currentBid) {
+                currentBid = bidAmount;
+                document.getElementById('currentBid').textContent = currentBid.toFixed(2);
+                alert('Bid placed successfully!');
+            } else {
+                alert('Your bid must be higher than the current highest bid.');
+            }
+        }
+    </script>
+</body>
+</html>
